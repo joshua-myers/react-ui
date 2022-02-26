@@ -8,11 +8,11 @@ import {
   Grid,
   Typography
 } from "@mui/material";
-import { Formik, Form, Field } from "formik";
-import { UrlList } from "./UrlList";
-import "./index.css";
-import { useLocation } from "react-router";
+import { Field, Form, Formik } from "formik";
 import { useMemo } from "react";
+import { useLocation } from "react-router";
+import "./index.css";
+import { UrlList } from "./UrlList";
 
 const CREATE_URL = gql`
   mutation CreateUrl($url: String!, $slug: String) {
@@ -29,7 +29,7 @@ function useQueryParams() {
 }
 export const Url = () => {
   const slug = useQueryParams().get("slug") || "";
-  const [createUrl, { data, loading, error, reset }] = useMutation(CREATE_URL, {
+  const [createUrl, { error, reset }] = useMutation(CREATE_URL, {
     refetchQueries: ["Url"]
   });
 

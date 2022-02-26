@@ -10,7 +10,7 @@ const GET_URL_FROM_SLUG = gql`
 `;
 export const ProcessSlug = () => {
   const { slug } = useParams();
-  const { loading, error, data } = useQuery(GET_URL_FROM_SLUG, {
+  const { data } = useQuery(GET_URL_FROM_SLUG, {
     variables: {
       slug
     }

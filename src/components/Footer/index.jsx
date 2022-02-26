@@ -5,7 +5,7 @@ export const Footer = () => {
     <AppBar position="sticky" color="primary" sx={{ top: "auto", bottom: 0 }}>
       <Toolbar>
         <Grid container justifyContent="space-between">
-          <Grid container item xs={12} sm="auto" spacing={{ xs: 0, sm: 4 }}>
+          <Grid container item xs={12} sm="auto">
             <Grid item xs={12} sm="auto">
               <Link color="inherit" underline="hover" href="/terms">
                 Terms &amp; Conditions
