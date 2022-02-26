@@ -21,7 +21,9 @@ export const UrlList = () => {
       {data.allUrls.map(({ id, url, slug }) => (
         <div key={id}>
           <a href={url}>{url}</a> -&gt;{" "}
-          <a href={`${window.location.host}`}>{window.location.host}</a>
+          <a href={`//${window.location.host}/${slug}`}>
+            {window.location.host}/{slug}
+          </a>
         </div>
       ))}
     </div>
