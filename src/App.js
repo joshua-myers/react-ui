@@ -9,12 +9,7 @@ import { Content } from "./components/Content";
 export default function App() {
   return (
     <div className="App">
-      <Container
-        disableGutters
-        fluid
-        maxWidth={false}
-        sx={{ minHeight: "100vh" }}
-      >
+      <Container disableGutters fluid sx={{ minHeight: "100vh" }}>
         <Header />
         <Main />
         <Url />
