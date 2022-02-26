@@ -1,4 +1,4 @@
-import { AppBar, Box, Grid, Link, Toolbar } from "@mui/material";
+import { AppBar, Grid, Link, Toolbar } from "@mui/material";
 
 export const Footer = () => {
   return (

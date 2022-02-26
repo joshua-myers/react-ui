@@ -1,6 +1,6 @@
 import { useQuery, gql } from "@apollo/client";
-import { FileCopy } from "@mui/icons-material";
-import { Grid, IconButton } from "@mui/material";
+import { ArrowForward, FileCopy } from "@mui/icons-material";
+import { Grid, IconButton, Link, Typography } from "@mui/material";
 import CopyToClipboard from "react-copy-to-clipboard";
 
 const GET_URLS = gql`
@@ -24,12 +24,22 @@ export const UrlList = () => {
       {data.allUrls.map(({ id, url, slug }) => {
         const short = `${window.location.host}/${slug}`;
         return (
-          <Grid container key={id} spacing={2}>
+          <Grid container key={id} spacing={2} alignItems="center">
             <Grid item>
-              <a href={url}>{url}</a> -&gt; <a href={`//${short}`}>{short}</a>
+              <Grid container alignItems="center" spacing={2}>
+                <Grid item>
+                  <Link href={url}>{url}</Link>
+                </Grid>
+                <Grid item>
+                  <ArrowForward />{" "}
+                </Grid>
+                <Grid item>
+                  <Link href={`//${short}`}>{short}</Link>
+                </Grid>
+              </Grid>
             </Grid>
             <Grid item>
-              <CopyToClipboard text={`//${short}`}>
+              <CopyToClipboard text={`${short}`}>
                 <IconButton
                   size="large"
                   edge="start"
