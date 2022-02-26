@@ -4,6 +4,7 @@ import { Url } from "./components/Url";
 import { Header } from "./components/Header";
 import { Main } from "./components/Main";
 import { Footer } from "./components/Footer";
+import { Content } from "./components/Content";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Header />
         <Main />
         <Url />
+        <Content />
         <Footer />
       </Container>
     </div>
