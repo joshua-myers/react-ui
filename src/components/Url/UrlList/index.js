@@ -1,6 +1,16 @@
 import { useQuery, gql } from "@apollo/client";
 import { ArrowForward, FileCopy } from "@mui/icons-material";
-import { Grid, IconButton, Link, Typography } from "@mui/material";
+import {
+  Alert,
+  Dialog,
+  DialogTitle,
+  Grid,
+  IconButton,
+  Link,
+  Snackbar,
+  Typography
+} from "@mui/material";
+import { useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
 
 const GET_URLS = gql`
@@ -15,6 +25,7 @@ const GET_URLS = gql`
 
 export const UrlList = () => {
   const { loading, error, data } = useQuery(GET_URLS);
+  const [copied, setCopied] = useState();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error</p>;
@@ -39,7 +50,7 @@ export const UrlList = () => {
               </Grid>
             </Grid>
             <Grid item>
-              <CopyToClipboard text={`${short}`}>
+              <CopyToClipboard text={`${short}`} onCopy={setCopied}>
                 <IconButton
                   size="large"
                   edge="start"
@@ -54,6 +65,13 @@ export const UrlList = () => {
           </Grid>
         );
       })}
+      <Snackbar
+        open={copied}
+        onClose={() => setCopied("")}
+        autoHideDuration={3000}
+      >
+        <Alert severity="success">Successfully Copied {copied}</Alert>
+      </Snackbar>
     </div>
   );
 };
