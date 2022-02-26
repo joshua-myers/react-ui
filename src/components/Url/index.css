@@ -1,3 +1,11 @@
 .form {
   background-color: blue;
 }
+
+.field {
+  width: 100%;
+}
+
+.disclaimer {
+  color: white;
+}

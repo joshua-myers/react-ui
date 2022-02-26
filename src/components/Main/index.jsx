@@ -4,7 +4,7 @@ import person from "../../assets/person.png";
 export const Main = () => {
   return (
     <Grid container>
-      <Grid item xs={12} sm={12} md={6}>
+      <Grid item xs={0} sm={12} md={6}>
         <Grid container>
           <Grid item>
             <Typography variant="h2" component="div" gutterBottom>

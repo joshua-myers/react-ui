@@ -5,7 +5,8 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Grid
+  Grid,
+  Typography
 } from "@mui/material";
 import { Formik, Form, Field } from "formik";
 import { UrlList } from "./UrlList";
@@ -28,8 +29,8 @@ export const Url = () => {
   console.log(error);
 
   return (
-    <Grid fluid>
-      <Grid item className="form">
+    <Grid container alignItems="center" justifyContent="center">
+      <Grid item xs={12}>
         <Formik
           initialValues={{ url: "", slug: "" }}
           validate={async ({ url, slug }) => {
@@ -49,11 +50,43 @@ export const Url = () => {
           }}
         >
           <Form>
-            <Field name="url" placeholder="Make your links shorter" />
-            <Field name="slug" placeholder="Custom Slug" />
-            <Button variant="contained" type="submit">
-              Shorten URL
-            </Button>
+            <Grid
+              container
+              justifyContent="center"
+              alignItems="center"
+              spacing={2}
+              className="form"
+            >
+              <Grid
+                item
+                container
+                justifyContent="space-evenly"
+                alignItems="center"
+                spacing={2}
+              >
+                <Grid item xs={12} sm={12} md={8}>
+                  <Field
+                    className="field"
+                    name="url"
+                    placeholder="Make your links shorter"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12} md="auto">
+                  <Field name="slug" placeholder="Custom Slug" />
+                </Grid>
+                <Grid item xs={12} md="auto">
+                  <Button variant="contained" type="submit">
+                    Shorten URL
+                  </Button>
+                </Grid>
+              </Grid>
+              <Grid item>
+                <Typography className="disclaimer">
+                  By clicking shorten URL, you agree to Rebrandly's Terms of Use
+                  and Privacy Policy.
+                </Typography>
+              </Grid>
+            </Grid>
           </Form>
         </Formik>
         <Dialog open={error} onClose={reset}>
