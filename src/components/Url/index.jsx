@@ -8,9 +8,11 @@ import {
   Grid,
   Typography
 } from "@mui/material";
-import { Formik, Form, Field } from "formik";
-import { UrlList } from "./UrlList";
+import { Field, Form, Formik } from "formik";
+import { useMemo } from "react";
+import { useLocation } from "react-router";
 import "./index.css";
+import { UrlList } from "./UrlList";
 
 const CREATE_URL = gql`
   mutation CreateUrl($url: String!, $slug: String) {
@@ -20,9 +22,14 @@ const CREATE_URL = gql`
     }
   }
 `;
+function useQueryParams() {
+  const { search } = useLocation();
 
+  return useMemo(() => new URLSearchParams(search), [search]);
+}
 export const Url = () => {
-  const [createUrl, { data, loading, error, reset }] = useMutation(CREATE_URL, {
+  const slug = useQueryParams().get("slug") || "";
+  const [createUrl, { error, reset }] = useMutation(CREATE_URL, {
     refetchQueries: ["Url"]
   });
 
@@ -32,7 +39,7 @@ export const Url = () => {
     <Grid container alignItems="center" justifyContent="center">
       <Grid item xs={12}>
         <Formik
-          initialValues={{ url: "", slug: "" }}
+          initialValues={{ url: "", slug: slug }}
           validate={async ({ url, slug }) => {
             const errors = {};
             if (!url) {
